@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>circle in canvas</title>
+    <style type="text/css" media="screen">
+        * {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div><canvas id="myCanvas" width="600" height="500"></canvas></div>
+    <button id="download" style="font-size: 2rem;">下载APP</button>
+    <script type="text/javascript">
+        function draw() {
+            var canvas = document.getElementById('myCanvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                ctx.beginPath();
+                ctx.arc(200, 200, 150, 0, Math.PI * 2, true);
+                ctx.stroke();
+            }
+        }
+        draw();
+
+        var btn = document.getElementById('download');
+        btn.onclick = function() {
+            // window.location.href = 'https://apps.apple.com/cn/app/%E9%A3%9E%E8%B1%A1%E7%94%9F%E6%B4%BB/id1526911886'
+            // window.event.returnValue = false
+            var ifr = document.createElement('iframe'); 
+            ifr.src = 'https://apps.apple.com/cn/app/%E9%A3%9E%E8%B1%A1%E7%94%9F%E6%B4%BB/id1526911886'; 
+            ifr.style.display = 'none'; 
+            document.body.appendChild(ifr); 
+            window.setTimeout(function(){ 
+            document.body.removeChild(ifr); 
+            },3000) 
+        }
+    </script>
+</body>
+
+</html>

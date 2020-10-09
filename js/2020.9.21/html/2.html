@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>测试</title>
+
+
+
+ <style type="text/css">
+    .blackoveride{
+        display:none;
+        position:absolute;
+        top:0%;left:0%;width:100%;height:100%;background-color:black;z-index:1001;
+        filter:alpha(opacity=60);       /* IE 兼容性IE11*/
+        -moz-opacity:0.5;              /* 老版Mozilla */
+          opacity: 0.5;           /* 支持opacity的浏览器*/
+    }
+    .wihte_con{
+        display:none;
+        position:absolute;
+        top:50%;
+        left:38%;
+        background-color:white;
+        z-index:1002;
+        overflow:hidden;
+        width:600px ;
+        height: 100px;
+
+        /*text-align: center;*/
+}
+
+
+ </style>
+</head>
+<body>
+
+    <div id="light" class="wihte_con">
+         <div>
+             <a href="javascript:void(0)" onclick="closeAlert()">关闭</a>
+         </div>
+        <div id="Alert">
+                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                电话卡双精度拉丝机烂大街菲勒灯鳉复合弓快递费
+
+        </div>
+
+    </div>
+
+    <div id="fade" class="blackoveride"></div>
+
+    <button onclick="alertshow()">显示</button>
+<script type="text/javascript">
+
+    function closeAlert(){
+        document.getElementById('light').style.display='none';
+        document.getElementById('fade').style.display='none';
+    }
+
+    function alertshow(){
+        document.getElementById('light').style.display='block';
+        document.getElementById('fade').style.display='block' ;
+    }
+
+
+</script>
+</body>
+</html>

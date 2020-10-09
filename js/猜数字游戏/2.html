@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>猜数字游戏</h1>
+    <p>我刚才随机选定了一个100以内的自然数。看你能否在 10 次以内猜中它。每次我都会告诉你所猜的结果是高了还是低了。</p>
+
+    <div class="form">
+        <label for="guessfield">请猜数</label>
+        <input type="text" id="guessfield" class="guessfield">
+        <input type="button" value="确定" class="guessbtn">
+    </div>
+
+    <div class="resultparas">
+        <p class="guesses"></p>
+        <p class="result"></p>
+        <p class="loworhigh"></p>
+    </div>
+
+    <script>
+        let radomnumber = Math.floor(Math.random() * 100) + 1;
+        const guesses = document.querySelector('.guesses');
+        const result = document.querySelector('.result');
+        const loworhigh = document.querySelector('.loworhigh')
+
+        const guessbtn = document.querySelector('.guessbtn');
+        const guessfield = document.querySelector('.guessfield');
+
+        let guessCount = 1;
+        let resetbtn;
+
+        function checkguess() {
+            let userguess = Number(guessfield.value);
+            if (guessCount === 1) {
+                guesses.textContent = '上次猜的数';
+            }
+            guesses.textContent += userguess + ' ';
+
+            if (userguess === radomnumber) {
+                result.textContent = '恭喜猜对了';
+                result.style.backgroundColor = 'green';
+                loworhigh.textContent = '';
+                setGameOver();
+            }
+            else if (guessCount === 10) {
+                result.textContent = 'game over , time empty'
+                setGameOver();
+            }
+            else {
+                result.textContent = '你猜错了';
+                result.style.backgroundColor = 'red';
+                if (userguess > radomnumber) {
+                    loworhigh.textContent = '你猜低了';
+                    loworhigh.style.backgroundColor = 'orange';
+                }
+                else if (userguess < radomnumber) {
+                    loworhigh.textContent = '你猜高了';
+                    loworhigh.style.backgroundColor = 'tomato';
+                }
+            }
+
+            guessCount++;
+            guessfield.value = '';
+            guessfield.focus();
+
+            guessbtn.addEventListener('click',checkguess);
+        }
+
+        function setGameOver() {
+            guessfield.disabled = true;
+            guessbtn.disabled = true;
+            resetbtn = document.createElement('button');
+            resetbtn.textContent = '开始新游戏';
+            document.body.appendChild(resetbtn);
+            resetbtn.addEventListener('click',resetGame)
+        }
+
+        function resetGame() {
+            guessCount = 1;
+
+            const resetparas = document.querySelector('.resultparas p');
+
+            for (let i =0 ; i < resetparas.length; i++) {
+                resetparas[i].textContent = '';
+            }
+
+            resetbtn.parentNode.removeChild(resetbtn);
+
+            guessfield.disabled = false;
+            guessbtn.disabled = false;
+            guessfield.value = '';
+            guessfield.focus();
+
+            // result.style.
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: monospace;
+        }
+
+        body {
+            width: 700px;
+            margin: 0 auto;
+        }
+
+        div {
+            width: 50%;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>before</p>
+        <ul class="before">
+
+        </ul>
+    </div>
+
+    <div>
+        <p>after(increase 6%)</p>
+        <ul class="after">
+    
+        </ul>
+    </div>
+
+    <button class="startOrEndBtn">start machine</button>
+    <p class="showDetail">the machine is stopped</p>
+
+    <script>
+        const arr = [190.23,235.56,5588.66,594,452,235.3241,245.32];
+        const beforeList = document.querySelector('.before');
+        const afterList = document.querySelector('.after');
+
+        for (let i = 0 ; i < arr.length ; i++) {
+            const listItem = document.createElement('li');
+            listItem.textContent = arr[i];
+            beforeList.appendChild(listItem);
+        }
+
+        for (let j = 0 ; j < arr.length ; j++) {
+            const listItem = document.createElement('li');
+            listItem.textContent = (arr[j] * (1 + 0.06)).toFixed(2);
+            afterList.appendChild(listItem);
+        }
+
+        const btn = document.querySelector('.startOrEndBtn');
+        const txt = document.querySelector('.showDetail');
+
+        btn.addEventListener('click',updateBtn);
+
+        function updateBtn() {
+            if (btn.textContent === 'start machine') {
+                btn.textContent = 'stop machine';
+                txt.textContent = 'the machine has started'
+            }
+            else {
+                btn.textContent = 'start machine';
+                txt.textContent = 'the machine has stopped'
+            }
+        }
+    </script>
+</body>
+</html>

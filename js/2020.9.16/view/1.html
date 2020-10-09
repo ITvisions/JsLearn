@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let search = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx61aebce585361b4a&redirect_uri=http%3A%2F%2Floginapi.yungouos.com%2Fcallback%2FgetBaseCallBack&response_type=code&scope=snsapi_base&state=05F4988521D142F2874B4B7AF00DF0FC#wechat_redirect"
+
+        var start = search.lastIndexOf('state=');
+        var end = search.lastIndexOf('#')
+        console.log(search.slice(start+6,end))
+    </script>
+</body>
+</html>

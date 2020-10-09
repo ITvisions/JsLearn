@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .main {
+            text-align: center;
+            margin: 20px auto;
+        }
+        .days ul {
+            text-align: center;
+            margin: 0 auto;
+            width: 500px;
+        }
+        .days ul li {
+            background-color: tomato;
+            width: 60px;
+            float: left;
+            list-style: none;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <p>
+            <label for="calender">Select month:</label>
+            <select name="calender" id="calender">
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
+            </select>
+        </p>
+        <h1 id="month"></h1>
+        <div class="days">
+            <ul></ul>
+        </div>
+    </div>
+
+    <script src="../js/日历.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let url = 'http://szyanyun.com/app-advertising.html';
+        let data = url.slice(url.indexOf('?') + 1, url.length);
+        var arr = data.split('=');
+        if (arr[1] == 'type') {
+            console.log('下载渠道包')
+        } else {
+            console.log('下载之前的包')
+        }
+
+        var list = [{
+            iccid: '123',
+            name: 'hhhh'
+        }, {
+            iccid: '326',
+            name: 'dddd'
+        }];
+        var listData = list.slice(',')
+        console.log(listData)
+        var arr = []
+        var falg = false
+        for (let i = 0; i < listData.length; i++) {
+            arr[i] = listData[i].name;
+        }
+        if (arr.indexOf('hhh') == -1) {
+            falg = true
+        } else {
+            falg = false
+        }
+        console.log(falg)
+    </script>
+</body>
+
+</html>

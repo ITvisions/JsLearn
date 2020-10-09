@@ -1,0 +1,11 @@
+.class {
+    margin: 20px auto;
+}
+#name {
+    width: 300px;
+    height: 24px;
+}
+p#story {
+    background-color: bisque;
+    visibility: hidden;
+}

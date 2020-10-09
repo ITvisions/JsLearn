@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            background-color: thistle;
+        }
+    </style>
+</head>
+<body>
+    <label for="refused">refused</label>
+    <p id="refused"></p>
+    <label for="admitted">admitted</label>
+    <p id="admitted"></p>
+    <script>
+        var refused = document.getElementById('refused');
+        var admitted = document.getElementById('admitted');
+
+        var people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
+
+        var i = 0;
+        do {
+            if (people[i] === 'Phil' || people[i] === 'Lola'){
+                refused.textContent += people[i] + ','
+            }
+            else {
+                admitted.textContent += people[i] + ','
+            }
+            i++
+        }while(i < people.length)
+
+        refused.textContent = refused.textContent.slice(0,refused.textContent.length - 2) + '.';
+        admitted.textContent = admitted.textContent.slice(0,admitted.textContent.length - 2) + '.';
+    </script>
+</body>
+</html>
