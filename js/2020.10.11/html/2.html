@@ -30,13 +30,14 @@
 
     let dom = document.getElementById('main');
     let canvas = document.createElement('canvas');
-    let ctx = canvas.getContext('2d');
+    canvas.id = 'canvas'
 
     let submit = document.getElementById('submit');
     submit.addEventListener('click',function(x,y,width,height,color) {
-      ctx.width = Number(width);
-      ctx.height = Number(height);
-      
+      let box = document.getElementById('canvas');
+      let ctx = box.getContext('2d');
+      ctx.fillStyle = color
+      ctx.fillRect(x,y,width,height)
     })
   </script>
 </body>
