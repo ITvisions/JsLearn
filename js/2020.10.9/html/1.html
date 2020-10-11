@@ -1,61 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Function start</title>
-    <style>
-      .msgBox {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        width: 200px;
-        background: #eee;
+
+<head>
+  <meta charset="utf-8">
+  <title>Function start</title>
+  <style>
+    .msgBox {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 242px;
+      background: #eee;
+    }
+
+    .msgBox p {
+      line-height: 1.5;
+      padding: 10px 20px;
+      color: #333;
+      padding-left: 82px;
+      background-position: 25px center;
+      background-repeat: no-repeat;
+    }
+
+    .msgBox button {
+      background: none;
+      border: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 1.1rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="main">Display message box</button>
+
+  <script>
+    var btn = document.getElementById('main');
+    btn.onclick = function() {
+      displayMessage('wow,cool','warning')
+      btn.disabled = 'disabled'
+    }
+    function displayMessage(msgText, msgType) {
+      const html = document.querySelector('html');
+      const panel = document.createElement('div');
+
+      panel.setAttribute('class', 'msgBox');
+      html.appendChild(panel);
+
+      const msg = document.createElement('p');
+      msg.textContent = msgText;
+      panel.append(msg);
+
+      const closeBtn = document.createElement('button');
+      closeBtn.textContent = 'x';
+      panel.appendChild(closeBtn);
+
+      closeBtn.onclick = function () {
+        panel.parentNode.removeChild(panel)
+        btn.disabled = ''
       }
-
-      .msgBox p {
-        line-height: 1.5;
-        padding: 10px 20px;
-        color: #333;
+      if (msgType === 'warning') {
+        panel.style.backgroundColor = 'orange'
       }
-
-      .msgBox button {
-        background: none;
-        border: none;
-        position: absolute;
-        top: 0;
-        right: 0;
-        font-size: 1.1rem;
-        color: #aaa;
+      else if (msgType === 'chat') {
+        panel.style.backgroundColor = 'aqua';
       }
-
-    </style>
-  </head>
-  <body>
-    <button>Display message box</button>
-
-    <script>
-        var btn 
-      function displayMessage() {
-          const html = document.querySelector('html');
-          const panel = document.createElement('div');
-
-          panel.setAttribute('class','msgBox');
-          html.appendChild(panel);
-
-          const msg = document.createElement('p');
-          msg.textContent = 'This is a message box';
-          panel.append(msg);
-
-          const closeBtn = document.createElement('button');
-          closeBtn.textContent = 'x';
-          panel.appendChild(closeBtn);
-
-          closeBtn.onclick = function() {
-              panel.parentNode.removeChild(panel)
-          }
-
+      else {
+        panel.style.backgroundColor= 'skyblue'
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    p {
+      color: aqua;
+    }
+  </style>
+</head>
+<body>
+  <div id="main" class="main">
+
+  </div>
+
+  <script>
+    let arr = ['Chris', 'Li Kang', 'Anne', 'Francesca', 'Mustafa', 'Tina', 'Bert', 'Jada'];
+    let para = document.createElement('p');
+
+    const dom = document.getElementById('main');
+
+    let index = Math.floor(Math.random() * 10);
+    para.textContent = arr[index];
+
+    dom.appendChild(para)
+  </script>
+</body>
+</html>

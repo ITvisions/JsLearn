@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    canvas {
+      border: 1px solid springgreen;
+    }
+  </style>
+</head>
+<body>
+  <div id="main" class="main">
+    <label for="x">x: <input type="text" name="" id="x"></label><br>
+    <label for="y">y:<input type="text" name="" id="y"></label><br>
+    <label for="width">width:<input type="text" name="" id="width"></label><br>
+    <label for="height">height:<input type="text" name="" id="height"></label><br>
+    <label for="color">color:<input type="text" name="" id="color"></label><br>
+    <button id="submit">generate</button><br>
+    
+  </div>
+
+  <script>
+    let x = document.getElementById('x').value;
+    let y = document.getElementById('y').value;
+    let width = document.getElementById('width').value;
+    let height = document.getElementById('height').value;
+    let color = document.getElementById('color').value;
+
+    let dom = document.getElementById('main');
+    let canvas = document.createElement('canvas');
+    let ctx = canvas.getContext('2d');
+
+    let submit = document.getElementById('submit');
+    submit.addEventListener('click',function(x,y,width,height,color) {
+      ctx.width = Number(width);
+      ctx.height = Number(height);
+      
+    })
+  </script>
+</body>
+</html>
