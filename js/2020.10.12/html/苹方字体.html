@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            font-size: 16px;
+            font-family: PingFangSC-Regular, sans-serif;
+            color: #ffffff;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        ul {
+            width: 1100px;
+            margin: 200px auto;
+        }
+        ul li {
+            float: left;
+            list-style: none;
+            width: 120px;
+            height: 200px;
+            line-height: 200px;
+        }
+        ul li:first-child{
+            width: 480px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        ul li:last-child{
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <ul>
+            <li>ffc60a这就是苹方字体？</li>
+            <li>f78439</li>
+            <li>fd5834</li>
+            <li>3882f1</li>
+            <li>
+                <h1>苹方</h1>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var list = document.querySelectorAll('li');
+        const colorList = ['#ffc60a','#f78439','#fd5834','#3882f1','#0dbf60']
+        for (let i = 0 ; i < list.length ; i++) {
+            list[i].style.backgroundColor = colorList[i]
+        }
+    </script>
+</body>
+</html>

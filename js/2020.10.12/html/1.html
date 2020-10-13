@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../js/1.js">
+</head>
+<body>
+    <input type="text" name="" id="CSDN_NAME">
+    <button>确定</button>
+    <script>
+        // let arr = ['wqe','err','rea','fsa','kjs'];
+        // let text = 'err';
+        // for (let i = 0 ; i < arr.length ; i++) {
+        //     if (text === arr[i]) {
+        //         console.log(i)
+        //     }
+        // }
+        function removeArray(arr,val) {
+            for (let i = 0 ; i < arr.length ; i++) {
+                if (arr[i] === val) {
+                    arr.splice(i,1)
+                }
+            }
+        }
+        var arr = ['sdf','ddd','aaa','bbb','ccc']
+        localStorage.setItem('arr',arr)
+        let list = localStorage.getItem('arr');
+        list = list.split(',');
+        
+        var name = document.getElementById("CSDN_NAME").value;
+        const btn = document.querySelector('button');
+
+        btn.onclick = function() {
+            console.log(name)
+        }
+
+    </script>
+</body>
+</html>
