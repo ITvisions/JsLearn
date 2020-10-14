@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Object-oriented JavaScript example</title>
+  </head>
+
+  <body>
+    <input type="text" class="dataName">
+    <input type="text" class="dataValue">
+    <button>获取</button>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+        var person = {};
+        var person = {
+            name : {
+                first:'Bob',
+                last:'Smith'
+            },
+            age: 32,
+            gender: 'male',
+            interests: ['music','skiing'],
+            bio:function() {
+                alert(this.name[0] + ' ' + this.name[1] + ' is ' + this.age + 'years old. He like ' + this.interests[0] + ' and ' + this.interests[1] + ' .');
+            },
+            greeting:function() {
+                alert('Hi! I\'m ' + this.name[0] + '.')
+            },
+            aaa:function() {
+                console.log('12ewe')
+            }
+        }
+
+        // person.name[0]
+        console.log(person.name.first,person['name']['first'])
+        person.bio()
+        // person.greeting()
+
+        /** 
+         * 这看起来很像访问一个数组的元素，从根本上来说是一回事儿
+         * ，你使用了关联了值的名字，而不是索引去选择元素。难怪对
+         * 象有时被称之为关联数组(associative array)了——对象做了
+         * 字符串到值的映射，而数组做的是数字到值的映射。
+        */
+        console.log(person['age'])
+
+        person.age  = 45
+        person['name']['first'] = 'Kity'
+        console.log(person.age)
+        console.log(person['name']['first'])
+
+        person['eyes'] = 'hazel'
+        person.farawell = function() {
+            console.log('byby')
+        }
+
+        console.log(person.eyes, person['eyes'])
+        person.farawell()
+
+        const myDataName = document.querySelector('.dataName').value;
+        const myDataValue  = document.querySelector('.dataValue').value;
+        var dog = {}
+        dog[myDataName] = myDataValue;
+        const btn = document.querySelector('button');
+        btn.onclick = function() {
+            console.log(dog)
+        }
+    </script>
+</html>

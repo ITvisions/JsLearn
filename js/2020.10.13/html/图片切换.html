@@ -4,16 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        h1 {
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        body {
+            width: 640px;
+            margin: 0 auto;
+        }
+        .full-image{
+            position: relative;
+            display: block;
+            width: 640px;
+            height: 480px;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 640px;
+            height: 480px;
+            background-color: rgba(0, 0, 0, 0);
+        }
+        button {
+            border: 0;
+            background-color: rgba(150, 150, 150, 0.6);
+            text-shadow: 1px 1px 1px white;
+            border: 1px solid #999;
+            position: absolute;
+            cursor: pointer;
+            top: 2px;
+            left: 2px;
+        }
+        .thumb-bar img{
+            display: block;
+            width: 20%;
+            float: left;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>照片库示例</h1>
 
     <div class="full-image">
-        <img src="../gallery-start/gallery-start/images/pic1.jpg" alt="">
+        <img class="display-image" src="../gallery-start/gallery-start/images/pic1.jpg" alt="">
         <div class="overlay"></div>
-        <button class="dark"></button>
+        <button class="dark">变暗</button>
     </div>
 
     <div class="thumb-bar"></div>
+    <script>
+        const overlay = document.querySelector('.overlay');
+        const btn = document.querySelector('.dark');
+        btn.addEventListener('click',function() {
+            const btnClass = btn.getAttribute('class')
+            if(btnClass === 'dark') {
+                btn.setAttribute('class','light');
+                btn.textContent = "变亮";
+                overlay.style.backgroundColor = 'rgba(0,0,0,0.5)'
+            }
+            else {
+                btn.setAttribute('class','dark');
+                btn.textContent = "变暗";
+                overlay.style.backgroundColor = 'rgba(0,0,0,0)'
+            }
+        })
+
+        const imgBox = document.querySelector('.thumb-bar');
+        const displayImage = document.querySelector('.display-image');
+        for (let i = 1 ; i <= 5 ; i++) {
+            let newimage = document.createElement('img');
+            newimage.setAttribute('src','../gallery-start/gallery-start/images/pic' + i + '.jpg')
+            imgBox.appendChild(newimage);
+            newimage.onclick = function(e) {
+                displayImage.src = e.target.src
+            }
+        }
+    </script>
 </body>
 </html>
