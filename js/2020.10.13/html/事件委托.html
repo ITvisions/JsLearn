@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            padding: 50px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <!-- 事件委托 -->
+    <div>
+        <ul id="parent-list">
+            <ul>
+                <li id="post-1">item1</li>
+                <li id="post-2">item2</li>
+                <li id="post-3">item3</li>
+                <li id="post-4">item4</li>
+                <li id="post-5">item5</li>
+            </ul>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('parent-list').addEventListener('click',function(e) {
+            if (e.target && e.target.nodeName == 'LI') {
+                console.log('list item ', e.target.id.replace("post-",""),"was clicked")
+            }
+        })
+
+        // document.getElementById('parent-list').addEventListener('click',function() {
+        //     console.log('click')
+        // })
+    </script>
+</body>
+</html>

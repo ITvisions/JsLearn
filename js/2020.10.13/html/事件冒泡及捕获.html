@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 480px;
+        height: 380px;
+        border-radius: 10px;
+        background-color: #eee;
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.1));
+      }
+
+      .hidden {
+        left: -50%;
+      }
+
+      .showing {
+        left: 50%;
+      }
+
+      div video {
+        display: block;
+        width: 400px;
+        margin: 40px auto;
+      }
+
+      ul {
+          position: absolute;
+          top: 0;
+          right: 0;
+      }
+    </style>
+</head>
+<body>
+    <button>display</button>
+    <div class="hidden">
+        <video>
+            <source src="https://mdn.github.io/learning-area/javascript/building-blocks/events/rabbit320.mp4" type="video/mp4">
+            <source src="https://github.com/mdn/learning-area/blob/master/javascript/building-blocks/events/rabbit320.webm" type="vedio/webm">
+            <p>your browser do not support h5 vedio <a href="https://mdn.github.io/learning-area/javascript/building-blocks/events/rabbit320.mp4">点这里试试</a></p>
+        </video>
+    </div>
+
+    
+
+    <script>
+        // 但是有一个问题 - 当您点击video开始播放的视频时，它会在同一时间导致<div>也被隐藏。 这是因为video在<div>之内 - video是<div>的一个子元素 - 所以点击video实际上是同时也运行<div>上的事件处理程序。
+        // 它发现了video.onclick...事件处理器并且运行它，因此这个视频<video>第一次开始播放。
+        //接着它发现了（往外冒泡找到的） videoBox.onclick...事件处理器并且运行它，因此这个视频<video>也隐藏起来了。
+
+
+        /***
+        1、事件捕获：浏览器检查元素的最外层祖先<html>，是否在捕获阶段中注册了一个onclick事件处理程序，如果是，则运行它
+                然后，它移动到<html>中单击元素的下一个祖先元素，并执行相同的操作，然后是单击元素再下一个祖先元素，依此类推，直到到达实际点击的元素。
+        2、事件冒泡：浏览器检查实际点击的元素是否在冒泡阶段中注册了一个onclick事件处理程序，如果是，则运行它
+                然后它移动到下一个直接的祖先元素，并做同样的事情，然后是下一个，等等，直到它到达<html>元素
+        */
+
+        /***阻止冒泡事件
+                用 stopPropagation() 修复问题
+
+        */
+
+        /***
+        事件委托:
+               冒泡还允许我们利用事件委托——这个概念依赖于这样一个事实,
+               如果你想要在大量子元素中单击任何一个都可以运行一段代码，
+               您可以将事件监听器设置在其父节点上，并让子节点上发生的
+               事件冒泡到父节点上，而不是每个子节点单独设置事件监听器。 
+        */
+        const btn = document.querySelector('button');
+        const videoBox = document.querySelector('div');
+        const vedio = document.querySelector('video');
+
+        btn.onclick = function() {
+            videoBox.setAttribute('class','showing')
+        }
+
+        videoBox.onclick = function() {
+            videoBox.setAttribute('class','hidden')
+        }
+
+        vedio.onclick = function(e) {
+            e.stopPropagation();
+            vedio.play()
+        }
+
+        
+    </script>
+</body>
+</html>
