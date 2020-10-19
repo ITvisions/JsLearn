@@ -90,5 +90,47 @@
 
       let person1 = new Person('Tammi', 'Smith', 17, 'female', ['music', 'skiing', 'kickboxing']);
 
+      function Teacher(first,last,age,gender,interests,subject) {
+        Person.call(this,first,last,age,gender,interests);
+        this.subject = subject;
+      }
+
+      Teacher.prototype = Object.create(Person.prototype);
+      console.log(Teacher.prototype.constructor)
+      Teacher.prototype.constructor = Teacher;
+      console.log(Teacher.prototype.constructor)
+      
+      console.log(Person === Person.prototype.constructor)
+      Teacher.prototype.greeting = function() {
+        var prefix;
+        if(this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+          prefix = 'Mr.'
+        }
+        else if (this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+          prefix = 'Mrs.';
+        }
+        else {
+          prefix = 'Mx.';
+        }
+
+        alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
+      }
+      var teacher1 = new Teacher('Dave', 'Griffiths', 31, 'male', ['football', 'cookery'], 'mathematics');
+      console.log(teacher1.name.first,teacher1.interests[0],teacher1.bio(),teacher1.subject,teacher1.greeting())
+    
+      function Student(first,last,age,gender,interests) {
+        Person.call(this,first,last,age,gender,interests);
+      }
+
+      Student.prototype = Object.create(Person.prototype);
+
+      Student.prototype.constructor = Student;
+
+      Student.prototype.greeting = function() {
+        alert('Yo! I\'m ' + this.name.first + '.');
+      }
+
+      let student1 = new Student('Liz', 'Sheppard', 17, 'female', ['ninjitsu', 'air cadets']);
+      student1.greeting();
     </script>
 </html>
