@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var superHeroes = {
+        "squadName" : "Super hero squad",
+        "homeTown" : "Metro City",
+        "formed" : 2016,
+        "secretBase" : "Super tower",
+        "active" : true,
+        "members" : [
+          {
+            "name" : "Molecule Man",
+            "age" : 29,
+            "secretIdentity" : "Dan Jukes",
+            "powers" : [
+              "Radiation resistance",
+              "Turning tiny",
+              "Radiation blast"
+            ]
+          },
+          {
+            "name" : "Madame Uppercut",
+            "age" : 39,
+            "secretIdentity" : "Jane Wilson",
+            "powers" : [
+              "Million tonne punch",
+              "Damage resistance",
+              "Superhuman reflexes"
+            ]
+          },
+          {
+            "name" : "Eternal Flame",
+            "age" : 1000000,
+            "secretIdentity" : "Unknown",
+            "powers" : [
+              "Immortality",
+              "Heat Immunity",
+              "Inferno",
+              "Teleportation",
+              "Interdimensional travel"
+            ]
+          }
+        ]
+      }
+
+      console.log(superHeroes.homeTown);
+      console.log(superHeroes['active'])
+      console.log(superHeroes.members[1].powers[2]);
+
+      // ”我们已经可以推测出 JSON 对象就是基于 JavaScript 对象，而且这几乎是正确的“——我们说几乎正确的原因是数组对象也是一种合法的 JSON 对象
+      var arr = [
+        {
+          "name" : "Molecule Man",
+          "age" : 29,
+          "secretIdentity" : "Dan Jukes",
+          "powers" : [
+            "Radiation resistance",
+            "Turning tiny",
+            "Radiation blast"
+          ]
+        },
+        {
+          "name" : "Madame Uppercut",
+          "age" : 39,
+          "secretIdentity" : "Jane Wilson",
+          "powers" : [
+            "Million tonne punch",
+            "Damage resistance",
+            "Superhuman reflexes"
+          ]
+        }
+      ]
+
+      console.log(arr[0]['powers'])
+  </script>
+</body>
+</html>
