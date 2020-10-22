@@ -1,20 +1,23 @@
+// 设置画布
+
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-const width = canvas.width = window.width;
-const height = canvas.height = window.height;
 
+const width = canvas.width = window.innerWidth;
+const height = canvas.height = window.innerHeight;
 
-function random(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
+// 生成随机数的函数
+
+function random(min,max) {
+  const num = Math.floor(Math.random() * (max - min)) + min;
+  return num;
 }
 
 function randomColor() {
-  return 'rgba(' +
-    random(0, 255) + ',' +
-    random(0, 255) + ',' +
-    random(0, 255) + ')';
+  return 'rgb(' + random(0, 255) + ', ' + random(0, 255) + ', ' + random(0, 255) + ')';
 }
 
+// Ball实例
 function Ball(x, y, velX, velY, color, size) {
   this.x = x;
   this.y = y;
@@ -24,15 +27,91 @@ function Ball(x, y, velX, velY, color, size) {
   this.size = size;
 }
 
-Ball.prototype.draw = function () {
-  ctx.beginPath();  //声明我们现在要开始在纸上画一个图形了
-  ctx.fillStyle = this.color; //定义这个图形的颜色 — 这个值正是小球的颜色属性
-  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI); //方法来在纸上画出一段圆弧
-  // x 和 y 是圆弧的中心的坐标 —— 也就是小球的中心坐标。
-  // 圆弧的半径 —— 小球的半径。
-  // 最后两个参数是开始和结束，也就是圆弧对应的夹角，单位以弧度表示。这里我们用的是 0 和 2 * PI，也就是 360 度（如果你设置成 0 和 1 * PI，则只会出现一个半圆，也就是 180 度）
-  ctx.fill();  //声明我们结束了以 beginPath() 开始的绘画,并且使用我们之前设置的颜色进行填充。
+Ball.prototype.draw = function() {
+  ctx.beginPath();
+  ctx.fillStyle = this.color;
+  ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
+  ctx.fill();
 }
 
-let testBall = new Ball(50, 100, 4, 4, 'blue', 10)
-testBall.draw();
+Ball.prototype.update = function() {
+  if (this.x + this.size >= width || this.x - this.size <= 0) {
+    this.velX = -this.velX;
+  }
+  if (this.y + this.size >= height || this.y - this.size <= 0) {
+    this.velY = -this.velY;
+  }
+
+  this.x += this.velX;
+  this.y += this.velY;
+}
+
+Ball.prototype.through = function() {
+  if (this.x >= width) {
+    this.x = 0;
+    this.y = random(0, height);
+  } else if (this.x <= 0) {
+    this.x = width;
+    this.y = random(0, height);
+  }
+  if (this.y >= height) {
+    this.y = 0;
+    this.x = random(0, width);
+  } else if (this.y <= 0) {
+    this.y = this.height;
+    this.x = random(0, width);
+  }
+
+  this.x += this.velX;
+  this.y += this.velY;
+}
+
+Ball.prototype.collisionDetect = function() {
+  for (let i = 0; i < balls.length; ++i) {
+    if (this !== balls[i]) {
+      const dx = this.x - balls[i].x;
+      const dy = this.y - balls[i].y;
+      const distance = Math.sqrt(dx*dx + dy*dy);
+
+      if (distance < this.size + balls[i].size) {
+        balls[i].color = this.color = randomColor();
+      }
+    }
+  }
+}
+
+const ballCount = 300;
+// const speed = 5;
+const minSize = 1;
+const maxSize = 1;
+let balls = [];
+for (let i = 0; i < ballCount; ++i) {
+  let size = random(minSize, maxSize)
+  let speed = Math.ceil(maxSize/size);
+  let ball = new Ball(
+    random(0 + size, width - size),
+    random(0 + size, height - size),
+    random(1, speed),
+    // random(1, speed),
+    0,
+    randomColor(),
+    size
+  );
+  balls.push(ball);
+}
+
+function loop() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+  ctx.fillRect(0, 0, width, height);
+
+  for (let i = 0; i < balls.length; ++i) {
+    balls[i].draw();
+    balls[i].through();
+    // balls[i].update();
+    // balls[i].collisionDetect();
+  }
+
+  requestAnimationFrame(loop);
+}
+
+loop();
